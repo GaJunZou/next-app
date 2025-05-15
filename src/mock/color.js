@@ -1,0 +1,15 @@
+const Color = [
+  { name: "blue", color: "#0958d9", bgColor: "#91caff" },
+  { name: "purple", color: "#531dab", bgColor: "#d3adf7" },
+  { name: "cyan", color: "#08979c", bgColor: "#87e8de" },
+  { name: "green", color: "#389e0d", bgColor: "#b7eb8f" },
+  { name: "magenta", color: "#c41d7f", bgColor: "#ffadd2" },
+  { name: "pink", color: "#c41d7f", bgColor: "#ffadd2" },
+  { name: "red", color: "#cf1322", bgColor: "#ffa39e" },
+  { name: "orange", color: "#d46b08", bgColor: "#ffd591" },
+  { name: "yellow", color: "#d4b106", bgColor: "#fffb8f" },
+  { name: "volcano", color: "#d4380d", bgColor: "#ffbb96" },
+  { name: "geekblue", color: "#1d39c4", bgColor: "#adc6ff" },
+  { name: "gold", color: "#d48806", bgColor: "#ffe58f" },
+  { name: "lime", color: "#7cb305", bgColor: "#eaff8f" },
+];

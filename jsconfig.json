@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@views/*": ["./src/views/*"],
+      "@components/*": ["./src/component/*"],
+      "@api/*": ["./src/pages/api/*"],
+    },
+    "resolveJsonModule": true,
+  }
+}
