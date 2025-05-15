@@ -5,7 +5,6 @@ import { loginApi } from "@api/user";
 import { ConfigProvider, Spin, theme } from "antd";
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
-import "animate.css";
 dayjs.locale("zh-cn");
 // 每個路由更新都會引起刷新，而 _app.js 則只會加載一次，路由變化引起頁面變化并不會重新加載
 export default function App({ Component, pageProps, ...exact }) {

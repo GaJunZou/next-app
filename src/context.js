@@ -38,7 +38,7 @@ export function Provider({ children }) {
     userData: null,
     scheduleItems: [],
     isDesktop: true,
-    systemTheme: "dark",
+    systemTheme: "light",
     viewMode: "month",
   });
 

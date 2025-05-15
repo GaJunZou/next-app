@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[219],{7955:function(n,t,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/start",function(){return u(96771)}])},96771:function(n,t,u){"use strict";u.r(t);var _=u(85893);t.default=()=>(0,_.jsx)("p",{children:"welcome to Start"})}},function(n){n.O(0,[774,888,179],function(){return n(n.s=7955)}),_N_E=n.O()}]);

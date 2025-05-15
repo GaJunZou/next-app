@@ -2,6 +2,7 @@
   "name": "next_project",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,6 +11,7 @@
   },
   "dependencies": {
     "antd": "^5.21.1",
+    "antd-mobile": "^5.39.0",
     "axios": "^1.7.7",
     "bcryptjs": "^3.0.2",
     "dotenv": "^16.4.7",
