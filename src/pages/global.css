@@ -89,10 +89,13 @@ img {
   }
 }
 
-.modal-inner-content {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  gap: 20px;
+.timeline-wrapper {
+  margin: 20px 0;
+  margin-right: 16px;
+}
+
+.timeline-item {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 8px;
 }

@@ -1,0 +1,13 @@
+.modal-inner-control {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 20px;
+}
+
+.modal-inner-footer {
+    position: fixed;
+    bottom: 20px;
+    width: calc(100vw - 40px);
+}

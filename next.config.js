@@ -9,7 +9,7 @@ const nextConfig = {
     return config;
   },
   output: 'export',
-  unoptimized: true
+  // unoptimized: true
 };
 
 module.exports = nextConfig;
