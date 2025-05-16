@@ -6,6 +6,64 @@ import { DatePicker, Input, Timeline } from "antd";
 
 import CtmModal from "@components/CtmModal";
 import AddDataForm from "@/component/AddDataForm";
+import AV from 'leancloud-storage';
+AV.init({
+  appId: "vToPA8oTWcdLHN5foUtAF5Jy-gzGzoHsz",
+  appKey: "REOnycCNmfg6J8nhQNH0Tj61",
+  serverURL: "https://vtopa8ot.lc-cn-n1-shared.com",
+});
+
+function save() {
+  // 声明 class
+  const Notes = AV.Object.extend("Notes");
+  // 构建对象
+  const notes = new Notes();
+
+  // 为属性赋值
+  notes.set("userId", "");
+  notes.set("title", "工程师周会");
+  notes.set("description", "周二两点，全体成员");
+  notes.set("dateValue", "周二两点，全体成员");
+  notes.set("imageList", []);
+
+  // 将对象保存到云端 
+  notes.save().then(
+    (note) => {
+      // 成功保存之后，执行其他逻辑
+      console.log(`保存成功。objectId：${note.id}`);
+    },
+    (error) => {
+      // 异常处理
+      console.log(error);
+
+    }
+  );
+}
+
+
+function query() {
+  const query = new AV.Query("Notes");
+  query.equalTo("title", "工程师周会");
+
+  // query.get("68275067d3496c42466ad9c3").then
+  query.find().then((todos) => {
+    // todo 就是 objectId 为 582570f38ac247004f39c24b 的 Todo 实例
+    // const title = todo.get("title");
+    // const priority = todo.get("priority");
+    // // 获取内置属性
+    // const objectId = todo.id;
+    // const updatedAt = todo.updatedAt;
+    // const createdAt = todo.createdAt;
+    console.log(todos);
+
+  });
+}
+
+
+
+
+
+
 
 const longPressEvents = function ({ onStartCallback, onEndCallback, ms = 2000 }) {
   let timeout;
@@ -103,6 +161,7 @@ export default () => {
       <div
         className={`bottom-button ${visible ? "change-to-close-btn" : "change-to-add-btn"}`}
         onClick={() => {
+          // query();
           setVisible(!visible);
         }}
       >
@@ -112,6 +171,7 @@ export default () => {
       <CtmModal isOpen={visible}>
         <AddDataForm
           onSave={(formData) => {
+            // save();
             setVisible(false);
             console.log(formData);
             setData([...data, formData]);

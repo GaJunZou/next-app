@@ -5,6 +5,7 @@ import { ImageUploader, Button, Toast } from "antd-mobile";
 import { useState } from "react";
 import dayjs from 'dayjs';
 import "./style.css";
+import AV from 'leancloud-storage';
 
 function useFormState(initValue) {
   const [form, setForm] = useState(initValue);
@@ -29,11 +30,22 @@ function sleep(timeout) {
   });
 }
 
-export async function mockUpload(file) {
-  await sleep(2000);
-  return {
-    url: URL.createObjectURL(file),
-  };
+export async function mockUpload(localFile) {
+  const file = new AV.File(localFile.name, localFile);
+  return new Promise((resolve, reject) => {
+    file.save().then(
+      (f) => {
+        console.log(`文件保存完成`, f.url());
+        resolve({
+          url: f.url()
+        })
+      },
+      (error) => {
+        // 保存失败，可能是文件无法被读取，或者上传过程中出现问题
+        console.log(error);
+      }
+    );
+  })
 }
 
 export async function mockUploadFail() {
@@ -47,11 +59,7 @@ export default (props) => {
     title: "title",
     description: "description",
     dateValue: "2025-05-16",
-    fileList: [
-      {
-        url: "https://images.unsplash.com/photo-1567945716310-4745a6b7844b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60",
-      },
-    ],
+    fileList: [],
   });
 
   return (
@@ -84,8 +92,8 @@ export default (props) => {
           variant={"filled"}
           value={dayjs(form.dateValue)}
           onChange={(value, dateString) => {
-            console.log({value, dateString});
-            
+            console.log({ value, dateString });
+
             form.setValue({
               dateValue: dateString,
             });
