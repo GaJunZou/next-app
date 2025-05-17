@@ -2,7 +2,7 @@
 
 import { DatePicker, Input } from "antd";
 import { ImageUploader, Button, Toast } from "antd-mobile";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dayjs from 'dayjs';
 import "./style.css";
 import AV from 'leancloud-storage';
@@ -54,13 +54,23 @@ export async function mockUploadFail() {
 }
 
 export default (props) => {
-  const { onSave } = props;
-  const form = useFormState({
-    title: "title",
-    description: "description",
-    dateValue: "2025-05-16",
-    fileList: [],
+  const { inputData, onSave } = props;
+  const form = useFormState(() => {
+    const today = dayjs().format('YYYY-MM-DD');
+    return {
+      title: "",
+      description: "",
+      dateValue: today,
+      fileList: [],
+    }
   });
+
+  useEffect(() => {
+    if (inputData) {
+      console.log(inputData);
+      form.setValue({ ...inputData });
+    }
+  }, [inputData]);
 
   return (
     <div className="modal-inner-content">
@@ -111,7 +121,7 @@ export default (props) => {
         />
       </div>
       <div className="modal-inner-footer">
-        <Button block color="primary" fill="solid" shape="rounded" onClick={() => onSave(form.formValue)}>
+        <Button block color="primary" fill="solid" shape="rounded" onClick={() => onSave(form.formValue, inputData ? 'edit' : 'add')}>
           保存
         </Button>
       </div>
