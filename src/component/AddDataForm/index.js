@@ -58,7 +58,7 @@ export default (props) => {
   const form = useFormState(() => {
     const today = dayjs().format('YYYY-MM-DD');
     return {
-      title: "",
+      // title: "",
       description: "",
       dateValue: today,
       fileList: [],
@@ -75,7 +75,7 @@ export default (props) => {
   return (
     <div className="modal-inner-content">
       <div className="modal-inner-control">
-        <Input
+        {/* <Input
           placeholder="标题"
           variant={"filled"}
           value={form.title}
@@ -84,7 +84,7 @@ export default (props) => {
               title: e.target.value,
             });
           }}
-        ></Input>
+        ></Input> */}
         <Input.TextArea
           value={form.description}
           onChange={(e) => {
@@ -93,17 +93,15 @@ export default (props) => {
             });
           }}
           variant={"filled"}
-          placeholder="Controlled autosize"
-          autoSize={{ minRows: 3, maxRows: 5 }}
+          placeholder="分享此刻的心情~"
+          autoSize={{ minRows: 5, maxRows: 10 }}
           showCount
-          maxLength={100}
+          maxLength={200}
         />
         <DatePicker
           variant={"filled"}
           value={dayjs(form.dateValue)}
           onChange={(value, dateString) => {
-            console.log({ value, dateString });
-
             form.setValue({
               dateValue: dateString,
             });
@@ -117,6 +115,7 @@ export default (props) => {
           upload={mockUpload}
           maxCount={4}
           multiple={true}
+          className="my-image-uploader"
           style={{ "--cell-size": "100px" }}
         />
       </div>

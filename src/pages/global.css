@@ -6,8 +6,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color: var(--bg-color);
-
+  background: -webkit-linear-gradient(top, #8dc4ff, white); /* Safari/Chrome */
   height: 100vh;
   overflow: scroll;
 }
@@ -38,6 +37,20 @@ img {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  gap: 10px;
+}
+
+.avatar-setting {
+  position: relative;
+}
+
+.avatar-setting .setting {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background: #ffffff66;
+  border-radius: 50%;
+  padding: 2px;
 }
 
 .bottom-button {
@@ -46,7 +59,7 @@ img {
   bottom: 20px;
   right: 10px;
   transform: translateY(0);
-  z-index: 9999;
+  z-index: 999;
   background: #1677ff;
   width: 50px;
   height: 50px;

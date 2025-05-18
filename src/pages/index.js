@@ -18,6 +18,7 @@ import AddDataForm from "@/component/AddDataForm";
 import AV from "leancloud-storage";
 import TimelineContent from "@/component/TimelineContent";
 import SlidingTabs from "@/component/SlidingTabs";
+import SearchBox from "@/component/SearchBox";
 AV.init({
   appId: "vToPA8oTWcdLHN5foUtAF5Jy-gzGzoHsz",
   appKey: "REOnycCNmfg6J8nhQNH0Tj61",
@@ -32,7 +33,7 @@ function addNoteItem(data) {
 
   // 为属性赋值
   notes.set("userId", data.userId || "1");
-  notes.set("title", data.title);
+  // notes.set("title", data.title);
   notes.set("description", data.description);
   notes.set("dateValue", data.dateValue);
   notes.set("fileList", data.fileList);
@@ -44,7 +45,7 @@ function addNoteItem(data) {
       console.log(`保存成功。objectId：${note.id}`);
     },
     (error) => {
-      // 异常处理 
+      // 异常处理
       console.log(error);
     }
   );
@@ -77,16 +78,15 @@ function queryByUserId() {
   });
 }
 
-
 async function updateNoteItem(data) {
   const note = AV.Object.createWithoutData("Notes", data.id);
-  note.set("title", data.title);
+  // note.set("title", data.title);
   note.set("description", data.description);
   note.set("dateValue", data.dateValue);
   note.set("fileList", data.fileList);
   await note.save();
   Toast.show({
-    content: '修改成功'
+    content: "修改成功",
   });
 }
 
@@ -125,12 +125,20 @@ export default () => {
   return (
     <div className="app-wrapper">
       <div className="personal-wrapper">
-        <Avatar
-          src={"https://placehold.co/10x10/orange/white"}
-          style={{ "--size": "60px", "--border-radius": "50%" }}
-        />
-        <SearchBar placeholder="请输入内容" clearable />
-        <SetOutline fontSize={30} />
+        <div className="avatar-setting">
+          <Avatar
+            src={"http://lc-vToPA8oT.cn-n1.lcfile.com/wBW7aWBYxxR5Neh26t2JGSjozIOOrdx0/IMG_6881.jpeg"}
+            style={{ "--size": "72px", "--border-radius": "50%" }}
+          >
+          </Avatar>
+          <span className="setting"><SetOutline fontSize={24} /></span>
+        </div>
+        {/* <SearchBar
+          placeholder="请输入内容"
+          clearable
+          style={{ "--height": "40px", "--border-radius": "100px", flex: 1 }}
+        /> */}
+        <SearchBox></SearchBox>
       </div>
       <SlidingTabs></SlidingTabs>
 
@@ -160,10 +168,10 @@ export default () => {
           onSave={async (formData, type) => {
             setVisible(false);
             console.log(formData);
-            if (type === 'add') {
+            if (type === "add") {
               await addNoteItem(formData);
             }
-            if (type === 'edit') {
+            if (type === "edit") {
               await updateNoteItem(formData);
               setEditData(null);
             }

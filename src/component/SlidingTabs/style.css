@@ -17,14 +17,8 @@ body {
 
 .sliding-tabs-container {
   position: relative;
-  /* left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0; */
+  margin: 10px 0px;
   width: 100%;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
 }
 
 .sliding-tabs {
@@ -35,7 +29,7 @@ body {
     0 6px 12px 0 rgba(24, 94, 224, 0.15);
   padding: 0.6rem;
   border-radius: 99px;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 .sliding-tabs * {
   z-index: 2;
@@ -69,6 +63,7 @@ body {
 
 label.active {
   color: var(--primary-color);
+  font-weight: 700;
 }
 label > .notification {
   background-color: var(--primary-color);
