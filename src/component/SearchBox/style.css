@@ -4,7 +4,7 @@
   height: 72px;
 }
 
-#content {
+.search-box-content {
   position: absolute;
   height: 50px;
   right: 20px;

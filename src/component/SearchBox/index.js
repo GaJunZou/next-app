@@ -13,9 +13,9 @@ export default (props) => {
     searchBtn.addEventListener("click", expand);
   }, []);
   return <div className='search-box'>
-    <div id="content">
+    <div className="search-box-content">
       <input type="search" name="input" className="search-box-input" />
-      <button type="reset" class="search-box-btn"></button>
+      <button type="reset" className="search-box-btn"></button>
     </div>
   </div>
 }

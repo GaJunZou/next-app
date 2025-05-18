@@ -5,7 +5,7 @@ import { ImageUploader, Button, Toast } from "antd-mobile";
 import { useEffect, useState } from "react";
 import dayjs from 'dayjs';
 import "./style.css";
-import AV from 'leancloud-storage';
+import { mockUpload } from "@/api";
 
 function useFormState(initValue) {
   const [form, setForm] = useState(initValue);
@@ -28,24 +28,6 @@ function sleep(timeout) {
       res(true);
     }, timeout);
   });
-}
-
-export async function mockUpload(localFile) {
-  const file = new AV.File(localFile.name, localFile);
-  return new Promise((resolve, reject) => {
-    file.save().then(
-      (f) => {
-        console.log(`文件保存完成`, f.url());
-        resolve({
-          url: f.url()
-        })
-      },
-      (error) => {
-        // 保存失败，可能是文件无法被读取，或者上传过程中出现问题
-        console.log(error);
-      }
-    );
-  })
 }
 
 export async function mockUploadFail() {
