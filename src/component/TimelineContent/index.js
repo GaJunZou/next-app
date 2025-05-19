@@ -4,8 +4,8 @@ import { Tag, Image, Popover, ImageViewer } from "antd-mobile";
 import { MoreOutline, EditSFill, DeleteOutline, ClockCircleOutline } from "antd-mobile-icons";
 import { Timeline } from "antd";
 
-import AV from "leancloud-storage";
 import "./style.css";
+import { usePopup } from "../popup";
 
 function isEmpty(value) {
   if (value === null) {
@@ -23,6 +23,7 @@ function isEmpty(value) {
 
 export default (props) => {
   const { dataList, onDeleteFn, onEditFn } = props;
+  const openPopup = usePopup();
 
   const actions = [
     { key: "edit", icon: <EditSFill />, text: "编辑" },
@@ -37,7 +38,7 @@ export default (props) => {
       children: (
         <div className="timeline-item">
           <div className="first-section">
-            <Tag color="#2db7f5" round style={{ fontSize: 14 }}>
+            <Tag color="#2db7f5" round style={{ fontSize: 14 }} onClick={() => { openPopup() }}>
               <ClockCircleOutline style={{ fontSize: 14 }} />
               &nbsp;&nbsp;
               {v.dateValue}
@@ -93,8 +94,6 @@ export default (props) => {
       color: "blue",
     };
   });
-
-  console.log(items);
 
   return (
     <div className="timeline-wrapper">

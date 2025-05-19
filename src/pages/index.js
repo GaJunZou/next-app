@@ -1,11 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  Avatar,
-  ErrorBlock,
-  Toast,
-  Popup
-} from "antd-mobile";
+import { Avatar, ErrorBlock, Toast, Popup } from "antd-mobile";
 import { SetOutline, AddOutline } from "antd-mobile-icons";
 
 import CtmModal from "@components/CtmModal";
@@ -13,8 +8,9 @@ import AddDataForm from "@/component/AddDataForm";
 import TimelineContent from "@/component/TimelineContent";
 import SlidingTabs from "@/component/SlidingTabs";
 
-import { addNoteItem, queryByUserId, updateNoteItem, deleteNoteItem, getUserProfile } from '../api/index';
+import { addNoteItem, queryByUserId, updateNoteItem, deleteNoteItem, getUserProfile } from "../api/index";
 import Header from "@/component/Header";
+import BlockSliderSwitch from "@/component/SlidingTabs";
 
 export default () => {
   const [visible, setVisible] = useState(false);
@@ -37,8 +33,25 @@ export default () => {
   return (
     <div className="app-wrapper">
       <Header></Header>
-      <SlidingTabs></SlidingTabs>
-
+      <SlidingTabs
+        defaultValue={"Upcoming"}
+        options={[
+          {
+            value: "Upcoming",
+            label: "我们的日常",
+            // notification: 2
+          },
+          {
+            value: "Develop",
+            label: "Develop",
+          },
+          {
+            value: "Completed",
+            label: "Completed",
+          },
+          
+        ]}
+      ></SlidingTabs>
       {dataList.length === 0 && <ErrorBlock status="empty" />}
 
       <TimelineContent
@@ -49,14 +62,13 @@ export default () => {
             Toast.show({
               content: "删除成功",
             });
-          })
+          });
         }}
         onEditFn={handleEdit}
       ></TimelineContent>
 
       <div
-        className={`bottom-button ${visible ? "change-to-close-btn" : "change-to-add-btn"
-          }`}
+        className={`bottom-button ${visible ? "change-to-close-btn" : "change-to-add-btn"}`}
         onClick={() => {
           // query();
           setVisible(!visible);

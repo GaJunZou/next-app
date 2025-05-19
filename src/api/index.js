@@ -83,13 +83,12 @@ export function addUser(data) {
 
   // 为属性赋值
   // notes.set("title", data.title);
-  user.set("name", data.name || 'Jaydon');
-  user.set("Username", data.name || 'Jaydon');
-  user.set("role", data.role || '');
-  user.set("description", data.description || '');
-  user.set("avatarUrl", data.avatarUrl || '');
-  user.set("account", data.account || '123456');
-  user.set("password", data.password || '123456');
+  user.set("name", data.name || "Jaydon");
+  user.set("role", data.role || "");
+  user.set("description", data.description || "");
+  user.set("avatarUrl", data.avatarUrl || "");
+  user.set("account", data.account || "123456");
+  user.set("password", data.password || "123456");
 
   // 将对象保存到云端
   user.save().then(
@@ -115,25 +114,25 @@ export async function getUserProfile(id) {
       resolve({
         ...user.attributes,
         id: user.id,
-      })
-    })
-  })
+      });
+    });
+  });
 }
 
 export async function updateUserProfile(data) {
   const user = AV.Object.createWithoutData("Users", data.id);
-  user.set("name", data.name);
-  user.set("role", data.role);
-  user.set("description", data.description);
-  user.set("avatarUrl", data.avatarUrl);
-  user.set("account", data.account);
-  user.set("password", data.password);
+  data.name && user.set("name", data.name);
+  data.role && user.set("role", data.role);
+  data.description && user.set("description", data.description);
+  data.avatarUrl && user.set("avatarUrl", data.avatarUrl);
+  data.account && user.set("account", data.account);
+  data.password && user.set("password", data.password);
   const result = await user.save();
   Toast.show({
     content: "修改成功",
   });
+  return result;
 }
-
 
 export async function mockUpload(localFile) {
   const file = new AV.File(localFile.name, localFile);
@@ -142,13 +141,13 @@ export async function mockUpload(localFile) {
       (f) => {
         console.log(`文件保存完成`, f.url());
         resolve({
-          url: f.url()
-        })
+          url: f.url(),
+        });
       },
       (error) => {
         // 保存失败，可能是文件无法被读取，或者上传过程中出现问题
         console.log(error);
       }
     );
-  })
+  });
 }

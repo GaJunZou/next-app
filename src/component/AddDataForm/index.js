@@ -6,32 +6,10 @@ import { useEffect, useState } from "react";
 import dayjs from 'dayjs';
 import "./style.css";
 import { mockUpload } from "@/api";
+import { useFormState } from "@/utils/hooks";
 
-function useFormState(initValue) {
-  const [form, setForm] = useState(initValue);
-  const setValue = (newValue) => {
-    setForm({
-      ...form,
-      ...newValue,
-    });
-  };
-
-  return {
-    ...form,
-    setValue,
-    formValue: form,
-  };
-}
-function sleep(timeout) {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      res(true);
-    }, timeout);
-  });
-}
 
 export async function mockUploadFail() {
-  await sleep(2000);
   throw new Error("Fail to upload");
 }
 
